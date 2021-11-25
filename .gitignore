@@ -1,0 +1,10 @@
+node_modules
+JS/index.html
+JS/css/style.min.css
+JS/img/icons/check.svg
+JS/img/icons/close.svg
+JS/img/icons/loading.gif
+JS/img/icons/p-left.svg
+JS/img/icons/p-right.svg
+JS/js/app.min.js
+JS/js/vendors.min.js
