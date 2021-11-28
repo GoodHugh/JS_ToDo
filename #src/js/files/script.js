@@ -1,16 +1,20 @@
 
 
 let arr = [];
+let ListDel = [];
 
+document.getElementById('add-batton').addEventListener('click', innerDiv());
 
 function innerDiv() {
     let count = 0;
     return function () {
+        let taskToDO = document.getElementById('ToDo_value').value;
         let newDev = document.createElement('div');
         newDev.setAttribute('id', 'row' + count);
         newDev.setAttribute('class', 'List');
-        document.getElementById('test').append(newDev); 
-        newDev.innerText = 'text';
+        document.getElementById('list_ToDo').append(newDev); 
+        newDev.innerText = taskToDO;
+        document.getElementById('ToDo_value').value = '';
         let checkBox = document.createElement('input');
         checkBox.setAttribute('id', 'checkbox' + count);
         checkBox.setAttribute('class', 'checkbox');
@@ -22,18 +26,15 @@ function innerDiv() {
 }
 
 function listToDo(){
-    let a = document.querySelectorAll('.checkbox');
-    let d = document.querySelectorAll('.List');
-    a.forEach((elem, i)=> {
-        let b = elem.checked;
-        console.log(b);
-        if (b) {
+    const ToDoList = document.querySelectorAll('.List');
+    ToDoList.forEach((elem)=> {
+        let elem_check = elem.querySelector('.checkbox').checked;
+        if (elem_check) {
+            ListDel.push(elem);
             elem.remove();
         }
     })
 }
 
-
-let inner = innerDiv();
 
 

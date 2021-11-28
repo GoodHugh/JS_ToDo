@@ -7,7 +7,18 @@
 		<div class="wrapper">
 			@@include('_header.html',{})
 			<main class="page">
-				<div id="test" class="page__test"></div>
+				<div class="page__form form-AddToDo _container">
+					<div class="form-AddToDo">
+						<div class="form-AddToDo__body">
+							<div class="form-AddToDo__body-input">
+								<textarea class="input-text" id="ToDo_value" placeholder="Введите задачу"></textarea>
+								<button class="batton-add" id="add-batton">Добавить</button>
+							</div>
+						</div>
+					</div>
+					<div id="list_ToDo" class="page__list-todo"></div>
+				</div>
+				
 			</main>
 			@@include('_footer.html',{})
 		</div>

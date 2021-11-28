@@ -15,7 +15,7 @@
 //</Иконочные шрифты>==========================================================================================
 
 //<Шрифт по умолчанию>==========================================================================================
-$fontFamily: "";
+$fontFamily: "Bree Serif";
 $fontSize: 16;
 //</Шрифт по умолчанию>==========================================================================================
 
@@ -93,11 +93,62 @@ body {
 	flex: 1 1 auto;
 }
 //===================================================================================================================================
-.page{
-	&__test{
-		display: flex;
-		align-items: center;
-		justify-content: center;
+.page {
+	// .page__form
+	&__form {
+	}
+	&__list-todo {
+		width: 50%;
+		background-color: rgba(236, 236, 236, 0.5);
+		padding: 10px;
+		margin: 10px 10px;
+		border-radius: 5px;
+		border: 1px solid #000000;
 	}
 }
+.form-AddToDo {
+	// .form-AddToDo__body
+	&__body {
+	}
+	// .form-AddToDo__body-input
+	&__body-input {
+		display: flex;
+		align-items: center;
+	}
+}
+.input-text {
+	display: block;
+	background-color: rgba(236, 236, 236, 0.5);
+	padding: 10px;
+	margin: 10px 10px;
+	font-size: 14px;
+	font-family: $fontFamily;
+	flex: 0 1 300px;
+	border-radius: 5px;
+	border: 1px solid #000000;
+}
+.batton-add {
+	background-color:rgba(236, 236, 236);
+	padding: 10px;
+	margin: 10px 10px;
+	width: 200px;
+	border-radius: 5px;
+	outline: 1px solid #000000;
+	font-size: 14px;
+	font-family: $fontFamily;
+}
+
+.List{
+	display: block;
+	word-wrap: break-word;
+	padding: 10px;
+	margin: 5px;
+	background:#ffffff;
+	border-radius: 5px;
+	border: 1px solid #000000;
+}
+
+
+
+
 //</ОСНОВНОЙ БЛОК>====================================================================================================
