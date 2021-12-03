@@ -2,6 +2,7 @@
 
 let arr = [];
 let ListDel = [];
+let ListCompl = [];
 const buttonEvent = document.getElementById('add-batton');
 const textareaEvent = document.getElementById('ToDo_value');
 
@@ -12,7 +13,6 @@ textareaEvent.addEventListener("keyup", function(event){
         document.getElementById('add-batton').click();
     }
 })
-
 
 function innerDiv() {
     let count = 0;
@@ -36,7 +36,7 @@ function innerDiv() {
     }
 }
 
-function listToDo() {
+function listToDoRemove() {
     const ToDoList = document.querySelectorAll('.List');
     ToDoList.forEach((elem) => {
         let elem_check = elem.querySelector('.checkbox').checked;
@@ -47,5 +47,15 @@ function listToDo() {
     })
 }
 
-
+function listToDoComplete(){
+    const ToDoList = document.querySelectorAll('.List');
+    ToDoList.forEach((elem)=>{
+        let elem_check = elem.querySelector('.checkbox').checked;
+        if (elem_check){
+            ListCompl.push(elem);
+            elem.style.backgroundColor = "#00c050";
+            console.log(elem);
+        }
+    })
+}
 

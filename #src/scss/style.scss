@@ -91,6 +91,7 @@ body {
 //<ОСНОВНОЙ БЛОК>====================================================================================================
 .page {
 	flex: 1 1 auto;
+	width: 100%;
 }
 //===================================================================================================================================
 .page {
@@ -123,7 +124,8 @@ body {
 	margin: 10px 10px;
 	font-size: 14px;
 	font-family: $fontFamily;
-	flex: 0 1 300px;
+	flex: 0 1 50%;
+	min-height: 150px;
 	border-radius: 5px;
 	border: 1px solid #000000;
 }
@@ -154,10 +156,48 @@ body {
 	border: 1px solid #000000;
 }
 
+.btn-bar {
+	// .btn-bar__ection
+	&__ection {
+		margin: 0 30px;
+		display: flex;
+		align-items: center;	
+		justify-content: start;
+	}
+	// .btn-bar__info
+	&__info {
+		display: flex;
+	}
+}
+.ection {
+	// .ection__checkbox
+	&__checkbox {
+	}
+	// .ection__button-comlp
+	&__button-comlp {
+	}
+	// .ection__button-ncompl
+	&__button-ncompl {
+	}
+	// .ection__button-remove
+	&__button-remove {
+	}
+}
+
+//</ОСНОВНОЙ БЛОК>====================================================================================================
 .checkbox{
 	margin: 0 5px;
 }
 
-
-
-//</ОСНОВНОЙ БЛОК>====================================================================================================
+.btn_bar{
+	display: inline-block;
+	background-color: rgba(236, 236, 236);
+	padding: 10px;
+	font-size: 14px;
+	font-family: $fontFamily;
+	transition: all 0.5s ease 0s;
+	&:hover{
+		transition: all 0.5s ease 0s;
+		background: rgba(158, 172, 255, 0.5);
+	}
+}
