@@ -91,7 +91,7 @@ body {
 //<ОСНОВНОЙ БЛОК>====================================================================================================
 .page {
 	flex: 1 1 auto;
-	width: 100%;
+	width: 100%;	
 }
 //===================================================================================================================================
 .page {
@@ -169,18 +169,43 @@ body {
 		display: flex;
 	}
 }
-.ection {
-	// .ection__checkbox
-	&__checkbox {
+.btn {
+	// .btn__info
+	&__info {
+		position: absolute;
+		top: 220px;
+		left: 0;
 	}
-	// .ection__button-comlp
-	&__button-comlp {
+}
+.info {
+	// .info__item
+	&__item {
+		display: flex;
+		margin: 0 15px;
+		padding: 10px;
+		cursor: pointer;
+		&:hover{
+			transition: all 0.5s ease 0s;
+			background: rgba(158, 172, 255, 0.5);
+		}
 	}
-	// .ection__button-ncompl
-	&__button-ncompl {
+	&__item.active{
+		background: rgba(158, 172, 255, 0.5);
 	}
-	// .ection__button-remove
-	&__button-remove {
+	// .info__name
+	&__name{
+		width: 200px;
+	}
+	// .info__count
+	&__count {
+		display: flex;
+		align-items: center;
+		justify-content: end;
+		width: 100px;
+		font-size: 14px;
+		font-weight: 700;
+		font-family: $fontFamily;
+		color: #949494;
 	}
 }
 

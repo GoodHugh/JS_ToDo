@@ -9,6 +9,10 @@ const completedEvent = document.getElementById('comlp-button');
 const not_completedEvent = document.getElementById('ncompl-button');
 const checkAllEvent = document.getElementById('action-check');
 const removeEvent = document.getElementById('remove-button');
+const removeComletedEvent = document.getElementById('remove-button-completed');
+const allListEvent = document.getElementById('all-info');
+const activeListEvent = document.getElementById('active-info');
+const complitedListEvent = document.getElementById('complited-info');
 
 buttonEvent.addEventListener('click', innerDiv());
 textareaEvent.addEventListener("keyup", function (event) {
@@ -20,6 +24,11 @@ completedEvent.addEventListener('click', listToDoCompleted);
 not_completedEvent.addEventListener('click', listToDoNotCompleted);
 checkAllEvent.addEventListener('input', checkAllToDo);
 removeEvent.addEventListener('click', listToDoRemove);
+removeComletedEvent.addEventListener('click', listToDoRemoveCompleted);
+allListEvent.addEventListener('click', ToDoAllList);
+activeListEvent.addEventListener('click', ToDoActiveList);
+complitedListEvent.addEventListener('click', ToDoComplitedList);
+allListEvent.click();
 
 function innerDiv() {
     let count = 0;
@@ -29,6 +38,7 @@ function innerDiv() {
             let newDev = document.createElement('div');
             newDev.setAttribute('id', 'row' + count);
             newDev.setAttribute('class', 'List');
+            newDev.setAttribute('data-status', 'active');
             document.getElementById('list_ToDo').append(newDev);
             newDev.innerText = taskToDO;
             let checkBox = document.createElement('input');
@@ -39,6 +49,7 @@ function innerDiv() {
             arr.push(newDev);
             count++;
             document.getElementById('ToDo_value').value = '';
+            countToDo();
         }
     }
 }
@@ -53,9 +64,10 @@ function listToDoRemove() {
         }
     })
     not_checkAllToDo();
+    countToDo();
 }
 
-function listToDoRemoveCompleted(){
+function listToDoRemoveCompleted() {
     const ToDoList = document.querySelectorAll('.List');
     ToDoList.forEach((elem) => {
         let elem_data = elem.dataset.status;
@@ -64,6 +76,7 @@ function listToDoRemoveCompleted(){
             elem.remove();
         }
     })
+    countToDo();
 }
 
 function listToDoCompleted() {
@@ -78,6 +91,7 @@ function listToDoCompleted() {
         }
     })
     not_checkAllToDo();
+    countToDo();
 }
 
 function listToDoNotCompleted() {
@@ -120,34 +134,68 @@ function checkAllToDo() {
     }
 }
 
-function countToDo(){
-    const ToDoComdleted = document.querySelectorAll('[data-status="completed"]');
-    console.log(ToDoComdleted);
+function countToDo() {
+    const infoItemsList = document.querySelectorAll('.info__item');
+    const allCount = document.getElementById('all-count');
+    const activeCount = document.getElementById('active-count');
+    const CompletedCount = document.getElementById('complited-count');
+    allCount.innerHTML = '';
+    activeCount.innerHTML = '';
+    CompletedCount.innerHTML = '';
+    infoItemsList.forEach((elem, i) => {
+        if (i == 0 && elem.classList.contains('active')) {
+            const ToDoList = document.querySelectorAll('.List');
+            allCount.innerHTML = ToDoList.length;
+        }
+        if (i == 1 && elem.classList.contains('active')) {
+            const ToDoActive = document.querySelectorAll('[data-status="active"]');
+            activeCount.innerHTML = ToDoActive.length;
+        }
+        if (i == 2 && elem.classList.contains('active')){
+            const ToDoCompleted = document.querySelectorAll('[data-status="completed"]');
+            CompletedCount.innerHTML = ToDoCompleted.length;
+        }
+    })
+}
+function removeClassActive() {
+    const infoItemsList = document.querySelectorAll('.info__item');
+    infoItemsList.forEach((elem) => {
+        elem.classList.remove('active');
+    })
 }
 
-function ToDoAllList(){
+function ToDoAllList() {
     const ToDoList = document.querySelectorAll('.List');
-    ToDoList.forEach((elem)=>{
+    ToDoList.forEach((elem) => {
         elem.style.display = "flex";
     })
+    removeClassActive();
+    allListEvent.classList.add('active');
+    countToDo();
 }
 
-function ToDoComplitedList(){
+function ToDoComplitedList() {
     const ToDoList = document.querySelectorAll('.List');
-    ToDoList.forEach((elem)=>{
+    ToDoList.forEach((elem) => {
         let status = elem.dataset.status;
-        if (status == "not_completed" || status == undefined) {
+        if (status == "not_completed" || status == "active" || status == undefined) {
             elem.style.display = "none";
-        }else  elem.style.display = "flex";
+        } else elem.style.display = "flex";
     })
+    removeClassActive();
+    complitedListEvent.classList.add('active');
+    countToDo();
 }
 
-function ToDoActiveList(){
+function ToDoActiveList() {
     const ToDoList = document.querySelectorAll('.List');
-    ToDoList.forEach((elem)=>{
+    ToDoList.forEach((elem) => {
         let status = elem.dataset.status;
         if (status == "not_completed" || status == "completed") {
             elem.style.display = "none";
-        } else  elem.style.display = "flex";
+        } else elem.style.display = "flex";
     })
+    removeClassActive();
+    activeListEvent.classList.add('active');
+    countToDo();
 }
