@@ -29,6 +29,7 @@ allListEvent.addEventListener('click', ToDoAllList);
 activeListEvent.addEventListener('click', ToDoActiveList);
 complitedListEvent.addEventListener('click', ToDoComplitedList);
 allListEvent.click();
+checkAllToDo();
 
 function innerDiv() {
     let count = 0;
@@ -122,13 +123,21 @@ function not_checkAllToDo() {
 function checkAllToDo() {
     const ToDoList = document.querySelectorAll('.List');
     const globalCheck = document.getElementById('action-check').checked;
+    const actionButtonSet = document.querySelectorAll('.ection__button');
+    console.log(actionButtonSet);
     if (globalCheck) {
-        ToDoList.forEach((elem) => {
+        actionButtonSet.forEach(function a (elem){
+            elem.removeAttribute('disabled');
+        })
+        ToDoList.forEach(function b (elem) {
             elem.querySelector('.checkbox').checked = true;
         })
     }
     else {
-        ToDoList.forEach((elem) => {
+        actionButtonSet.forEach(function c (elem){
+            elem.setAttribute('disabled', 'disabled');
+        })
+        ToDoList.forEach(function d (elem){
             elem.querySelector('.checkbox').checked = false;
         })
     }
