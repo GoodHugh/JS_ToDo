@@ -148,12 +148,13 @@ body {
 .List{
 	display: flex;
 	align-items: center;
-	word-wrap: break-word;
+	overflow: hidden;
 	padding: 10px 5px; 
 	margin: 5px;
 	background:#ffffff;
 	border-radius: 5px;
 	border: 1px solid #000000;
+	cursor: pointer;
 }
 
 .btn-bar {

@@ -4,6 +4,7 @@ let ListCompl = [];
 let ListNotCompl = [];
 let ListDelComlited = [];
 const buttonEvent = document.getElementById('add-batton');
+const buttonEdirEvent = document.getElementById('edit-batton'); 
 const textareaEvent = document.getElementById('ToDo_value');
 const completedEvent = document.getElementById('comlp-button');
 const not_completedEvent = document.getElementById('ncompl-button');
@@ -49,11 +50,31 @@ function innerDiv() {
             document.getElementById('row' + count).prepend(checkBox);
             arr.push(newDev);
             count++;
-            document.getElementById('ToDo_value').value = '';
+            textareaEvent.value = '';
             countToDo();
         }
     }
 }
+
+document.querySelector('.List').addEventListener('dblclick', editToDoItem);
+
+function editToDoItem(elem){
+    let editItem = elem.target;
+    if(editItem.className == 'List' && editItem.getAttribute('data-status') == 'active'){
+        let contentEditItem = editItem.textContent;
+        textareaEvent.value = contentEditItem;
+        editItem.style.border = "1px solid #e5ff00";
+        editItem.setAttribute('data-status', 'edit');
+        buttonEvent.style.pointerEvents = "none";
+        buttonEvent.setAttribute('disabled', 'disabled');
+        buttonEdirEvent.style.display = 'inline-block';
+        const ToDoList = document.querySelectorAll('.List');
+        ToDoList.forEach((elem)=>{
+            elem.style.pointerEvents = "none";
+        })
+    }
+}
+
 
 function listToDoRemove() {
     const ToDoList = document.querySelectorAll('.List');
@@ -124,7 +145,6 @@ function checkAllToDo() {
     const ToDoList = document.querySelectorAll('.List');
     const globalCheck = document.getElementById('action-check').checked;
     const actionButtonSet = document.querySelectorAll('.ection__button');
-    console.log(actionButtonSet);
     if (globalCheck) {
         actionButtonSet.forEach(function a (elem){
             elem.removeAttribute('disabled');
