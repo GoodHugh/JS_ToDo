@@ -4,7 +4,7 @@ let ListCompl = [];
 let ListNotCompl = [];
 let ListDelComlited = [];
 const buttonEvent = document.getElementById('add-batton');
-const buttonEdirEvent = document.getElementById('edit-batton'); 
+const buttonEdirEvent = document.getElementById('edit-batton');
 const textareaEvent = document.getElementById('ToDo_value');
 const completedEvent = document.getElementById('comlp-button');
 const not_completedEvent = document.getElementById('ncompl-button');
@@ -29,6 +29,7 @@ removeComletedEvent.addEventListener('click', listToDoRemoveCompleted);
 allListEvent.addEventListener('click', ToDoAllList);
 activeListEvent.addEventListener('click', ToDoActiveList);
 complitedListEvent.addEventListener('click', ToDoComplitedList);
+buttonEdirEvent.addEventListener('click', writeEditToDoItems)
 allListEvent.click();
 checkAllToDo();
 
@@ -42,12 +43,16 @@ function innerDiv() {
             newDev.setAttribute('class', 'List');
             newDev.setAttribute('data-status', 'active');
             document.getElementById('list_ToDo').append(newDev);
-            newDev.innerText = taskToDO;
             let checkBox = document.createElement('input');
             checkBox.setAttribute('id', 'checkbox' + count);
             checkBox.setAttribute('class', 'checkbox');
             checkBox.setAttribute('type', 'checkbox');
             document.getElementById('row' + count).prepend(checkBox);
+            let textBox = document.createElement('p');
+            textBox.setAttribute('id', 'boxValue' + count);
+            textBox.setAttribute('class', 'List-text');
+            document.getElementById('row' + count).append(textBox);
+            textBox.innerText = taskToDO;
             arr.push(newDev);
             count++;
             textareaEvent.value = '';
@@ -56,25 +61,48 @@ function innerDiv() {
     }
 }
 
-document.querySelector('.List').addEventListener('dblclick', editToDoItem);
+document.addEventListener('dblclick', function (e) {
+    if (e.target.classList.contains('List')) {    
 
-function editToDoItem(elem){
-    let editItem = elem.target;
-    if(editItem.className == 'List' && editItem.getAttribute('data-status') == 'active'){
-        let contentEditItem = editItem.textContent;
-        textareaEvent.value = contentEditItem;
-        editItem.style.border = "1px solid #e5ff00";
-        editItem.setAttribute('data-status', 'edit');
-        buttonEvent.style.pointerEvents = "none";
-        buttonEvent.setAttribute('disabled', 'disabled');
-        buttonEdirEvent.style.display = 'inline-block';
-        const ToDoList = document.querySelectorAll('.List');
-        ToDoList.forEach((elem)=>{
-            elem.style.pointerEvents = "none";
-        })
+        editToDoItem();
     }
-}
 
+    function editToDoItem() {
+        let editItem = e.target;
+        if (editItem.className == 'List' && editItem.getAttribute('data-status') == 'active') {
+            let contentEditItem = editItem.textContent;
+            textareaEvent.value = contentEditItem;
+            editItem.style.border = "1px solid #e5ff00";
+            editItem.setAttribute('data-status', 'edit');
+            buttonEvent.style.pointerEvents = "none";
+            buttonEvent.setAttribute('disabled', 'disabled');
+            buttonEdirEvent.style.display = 'inline-block';
+            const ToDoList = document.querySelectorAll('.List');
+            ToDoList.forEach((elem) => {
+                elem.style.pointerEvents = "none";
+            })
+        }
+    }
+    
+});
+
+
+
+function writeEditToDoItems(){
+    const ToDoList = document.querySelectorAll('.List');
+    ToDoList.forEach((elem, i)=>{
+        if (elem.dataset.status == "edit"){
+            document.getElementById('boxValue' + i).innerText = textareaEvent.value;
+            elem.removeAttribute('style', 'border');
+            elem.setAttribute('data-status', 'active');
+        }
+        elem.removeAttribute('style', 'pointer-events');
+    })
+    buttonEdirEvent.style.display = 'none';
+    textareaEvent.value = '';
+    buttonEvent.removeAttribute('disabled', 'disabled');
+    buttonEvent.removeAttribute('style', 'pointer-events');
+}
 
 function listToDoRemove() {
     const ToDoList = document.querySelectorAll('.List');
@@ -146,18 +174,18 @@ function checkAllToDo() {
     const globalCheck = document.getElementById('action-check').checked;
     const actionButtonSet = document.querySelectorAll('.ection__button');
     if (globalCheck) {
-        actionButtonSet.forEach(function a (elem){
+        actionButtonSet.forEach(function a(elem) {
             elem.removeAttribute('disabled');
         })
-        ToDoList.forEach(function b (elem) {
+        ToDoList.forEach(function b(elem) {
             elem.querySelector('.checkbox').checked = true;
         })
     }
     else {
-        actionButtonSet.forEach(function c (elem){
+        actionButtonSet.forEach(function c(elem) {
             elem.setAttribute('disabled', 'disabled');
         })
-        ToDoList.forEach(function d (elem){
+        ToDoList.forEach(function d(elem) {
             elem.querySelector('.checkbox').checked = false;
         })
     }
@@ -180,7 +208,7 @@ function countToDo() {
             const ToDoActive = document.querySelectorAll('[data-status="active"]');
             activeCount.innerHTML = ToDoActive.length;
         }
-        if (i == 2 && elem.classList.contains('active')){
+        if (i == 2 && elem.classList.contains('active')) {
             const ToDoCompleted = document.querySelectorAll('[data-status="completed"]');
             CompletedCount.innerHTML = ToDoCompleted.length;
         }
