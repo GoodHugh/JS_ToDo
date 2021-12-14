@@ -32,6 +32,15 @@ complitedListEvent.addEventListener('click', ToDoComplitedList);
 buttonEdirEvent.addEventListener('click', writeEditToDoItems)
 allListEvent.click();
 checkAllToDo();
+document.addEventListener('input', ((elem) => {
+    let dataTarget = elem.target;
+    if (dataTarget.className == 'checkbox') {
+        if (dataTarget.checked) {
+            checkeOneToDO(dataTarget.checked);
+        } else checkeOneToDO(dataTarget.checked);
+    }
+})
+)
 
 function innerDiv() {
     let count = 0;
@@ -57,13 +66,13 @@ function innerDiv() {
             count++;
             textareaEvent.value = '';
             countToDo();
+            checkAllToDo();
         }
     }
 }
 
 document.addEventListener('dblclick', function (e) {
-    if (e.target.classList.contains('List')) {    
-
+    if (e.target.classList.contains('List')) {
         editToDoItem();
     }
 
@@ -83,15 +92,15 @@ document.addEventListener('dblclick', function (e) {
             })
         }
     }
-    
+
 });
 
 
 
-function writeEditToDoItems(){
+function writeEditToDoItems() {
     const ToDoList = document.querySelectorAll('.List');
-    ToDoList.forEach((elem, i)=>{
-        if (elem.dataset.status == "edit"){
+    ToDoList.forEach((elem, i) => {
+        if (elem.dataset.status == "edit") {
             document.getElementById('boxValue' + i).innerText = textareaEvent.value;
             elem.removeAttribute('style', 'border');
             elem.setAttribute('data-status', 'active');
@@ -169,23 +178,42 @@ function not_checkAllToDo() {
     }
 }
 
+function checkeOneToDO(event) {
+    const actionButtonSet = document.querySelectorAll('.ection__button');
+    if (event) {
+        actionButtonSet.forEach((elem, i) => {
+            if ((actionButtonSet.length - 1) != i) {
+                elem.removeAttribute('disabled');
+                elem.style.pointerEvents = 'auto';
+            }
+        })
+    }
+    else {
+        actionButtonSet.forEach((elem, i) => {
+            if ((actionButtonSet.length - 1) != i) {
+                elem.setAttribute('disabled', 'disabled');
+                elem.style.pointerEvents = 'none';
+            }
+        })
+    }
+}
+
 function checkAllToDo() {
     const ToDoList = document.querySelectorAll('.List');
-    const globalCheck = document.getElementById('action-check').checked;
-    const actionButtonSet = document.querySelectorAll('.ection__button');
-    if (globalCheck) {
-        actionButtonSet.forEach(function a(elem) {
-            elem.removeAttribute('disabled');
-        })
-        ToDoList.forEach(function b(elem) {
+    const globalCheck = document.getElementById('action-check');
+    if (ToDoList.length == 0) {
+        globalCheck.setAttribute('disabled', 'disabled');
+    } else globalCheck.removeAttribute('disabled');
+
+    if (globalCheck.checked) {
+        checkeOneToDO(globalCheck.checked)
+        ToDoList.forEach((elem) => {
             elem.querySelector('.checkbox').checked = true;
         })
     }
     else {
-        actionButtonSet.forEach(function c(elem) {
-            elem.setAttribute('disabled', 'disabled');
-        })
-        ToDoList.forEach(function d(elem) {
+        checkeOneToDO(globalCheck.checked);
+        ToDoList.forEach((elem) => {
             elem.querySelector('.checkbox').checked = false;
         })
     }
