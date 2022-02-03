@@ -91,22 +91,59 @@ body {
 //<ОСНОВНОЙ БЛОК>====================================================================================================
 .page {
 	flex: 1 1 auto;
-	width: 100%;	
+	width: 100%;
 }
 //===================================================================================================================================
 .page {
 	// .page__form
+	&__main {
+	}
 	&__form {
 	}
-	&__list-todo {
-		width: 50%;
+	&__paginations{
+		background-color: rgba(0, 4, 255, 0.5);
+
+	}
+	&__paginations-todo {
 		background-color: rgba(236, 236, 236, 0.5);
 		padding: 10px;
 		margin: 10px 10px;
 		border-radius: 5px;
 		border: 1px solid #000000;
+		flex: 1 1 auto;
+	}
+	// .page__paginations-body
+	&__paginations-body {
+	}
+	// .page__paginations-items
+	&__paginations-items {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 1 100%;
+	}
+	// .page__paginations-button
+	&__paginations-button {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
 }
+.round-btn {
+	width: 30px;
+	height: 30px;
+	background-color: rgba(236, 236, 236, 0.5);
+	border-radius: 50%;
+	margin: 5px;
+	border: 1px solid #0000004b;
+	&:hover{
+		transition: all 0.5s ease 0s;
+		background: rgba(158, 172, 255, 0.5);
+	}
+}
+
+
 .form-AddToDo {
 	// .form-AddToDo__body
 	&__body {
@@ -116,20 +153,25 @@ body {
 		display: flex;
 		align-items: center;
 	}
+	&__batton{
+
+	}
 }
+
 .input-text {
-	display: block;
+	display: flex;
 	background-color: rgba(236, 236, 236, 0.5);
 	padding: 10px;
 	margin: 10px 10px;
 	font-size: 14px;
 	font-family: $fontFamily;
-	flex: 0 1 50%;
 	min-height: 150px;
+	flex: 0 1 100%;
 	border-radius: 5px;
 	border: 1px solid #000000;
 }
 .batton-add {
+	display: block;
 	background-color: rgba(236, 236, 236);
 	padding: 10px;
 	margin: 10px 10px;
@@ -149,8 +191,8 @@ body {
 	display: flex;
 	align-items: center;
 	overflow: hidden;
-	padding: 10px 5px; 
-	margin: 5px;
+	padding: 10px 10px; 
+	margin: 10px;
 	background:#ffffff;
 	border-radius: 5px;
 	border: 1px solid #000000;

@@ -67,6 +67,7 @@ function innerDiv() {
             textareaEvent.value = '';
             countToDo();
             checkAllToDo();
+            AddLast_List_ToDo();
         }
     }
 }
@@ -99,7 +100,7 @@ function writeEditToDoItems() {
     if (textareaEvent.value == "") {
         textareaEvent.style.border = "1px solid red";
     } else if (textareaEvent.value != "") {
-        ToDoList.forEach((elem, i) => {
+        ToDoList.forEach((elem) => {
             if (elem.dataset.status == "edit") {
                 let List_value = elem.querySelector('.List-text');
                 List_value.innerText = textareaEvent.value;
@@ -286,4 +287,22 @@ function ToDoActiveList() {
     removeClassActive();
     activeListEvent.classList.add('active');
     countToDo();
+}
+
+//пагинация------------------------------------------------------------------
+const height_page__paginations = document.getElementById('paginations-page').clientHeight;
+function AddLast_List_ToDo() {
+    
+    const ToDoList = document.querySelectorAll('.List');
+    let summItemsList = 0;
+    ToDoList.forEach((elem) => {
+        summItemsList = summItemsList + elem.offsetHeight;
+    })
+    if (height_page__paginations < summItemsList) {
+        let newPage = document.createElement('div');
+        newPage.setAttribute('class', 'page__paginations-todo');
+        newPage.setAttribute('data-status', 'active-on');
+        document.getElementById('list_ToDo').removeAttribute('data-status', 'active-on');
+        document.getElementById('paginations-page').append(newPage);
+    }
 }
