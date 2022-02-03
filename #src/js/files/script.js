@@ -92,25 +92,28 @@ document.addEventListener('dblclick', function (e) {
             })
         }
     }
-
 });
-
-
 
 function writeEditToDoItems() {
     const ToDoList = document.querySelectorAll('.List');
-    ToDoList.forEach((elem, i) => {
-        if (elem.dataset.status == "edit") {
-            document.getElementById('boxValue' + i).innerText = textareaEvent.value;
-            elem.removeAttribute('style', 'border');
-            elem.setAttribute('data-status', 'active');
-        }
-        elem.removeAttribute('style', 'pointer-events');
-    })
-    buttonEdirEvent.style.display = 'none';
-    textareaEvent.value = '';
-    buttonEvent.removeAttribute('disabled', 'disabled');
-    buttonEvent.removeAttribute('style', 'pointer-events');
+    if (textareaEvent.value == "") {
+        textareaEvent.style.border = "1px solid red";
+    } else if (textareaEvent.value != "") {
+        ToDoList.forEach((elem, i) => {
+            if (elem.dataset.status == "edit") {
+                let List_value = elem.querySelector('.List-text');
+                List_value.innerText = textareaEvent.value;
+                elem.removeAttribute('style', 'border');
+                elem.setAttribute('data-status', 'active');
+            }
+            elem.removeAttribute('style', 'pointer-events');
+        })
+        buttonEdirEvent.style.display = 'none';
+        textareaEvent.style.border = "1px solid #000000";
+        textareaEvent.value = '';
+        buttonEvent.removeAttribute('disabled', 'disabled');
+        buttonEvent.removeAttribute('style', 'pointer-events');
+    }
 }
 
 function listToDoRemove() {
