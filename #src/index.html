@@ -7,33 +7,38 @@
 <body>
 	<div class="wrapper">
 		@@include('_header.html',{})
-		<main class="page">
-			<div class="page__main _container">
-				<div class="page__form form-AddToDo">
-					<div class="form-AddToDo">
-						<div class="form-AddToDo__body">
-							<div class="form-AddToDo__body-input">
-								<textarea class="input-text" id="ToDo_value" placeholder="Введите задачу"></textarea>
-								<div class="form-AddToDo__batton">
-									<button class="batton-add" id="add-batton">Добавить</button>
-									<button class="batton-add" id="edit-batton" style="display: none;">Изменить</button>
+		<main id="body_page" class="page">
+			<div id="actions_page" class="page__actions  _container">
+				<div class="page__main">
+					<div class="page__form form-AddToDo">
+						<div class="form-AddToDo">
+							<div class="form-AddToDo__body">
+								<div class="form-AddToDo__body-input">
+									<textarea class="input-text" id="ToDo_value"
+										placeholder="Введите задачу"></textarea>
+									<div class="form-AddToDo__batton">
+										<button class="batton-add" id="add-batton">Добавить</button>
+										<button class="batton-add" id="edit-batton"
+											style="display: none;">Изменить</button>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="btn-bar">
-					<div class="btn-bar__ection ection">
-						<input class="ection__checkbox checkbox" id="action-check" type="checkbox">
-						<button class="ection__button btn_bar" id="comlp-button">Выполнено</button>
-						<button class="ection__button btn_bar" id="ncompl-button">Не выполнено</button>
-						<button class="ection__button btn_bar" id="remove-button">Удалить</button>
-						<button class="ection__button btn_bar" id="remove-button-completed">Удалить выполненные</button>
+					<div class="btn-bar">
+						<div class="btn-bar__ection ection">
+							<input class="ection__checkbox checkbox" id="action-check" type="checkbox">
+							<button class="ection__button btn_bar" id="comlp-button">Выполнено</button>
+							<button class="ection__button btn_bar" id="ncompl-button">Не выполнено</button>
+							<button class="ection__button btn_bar" id="remove-button">Удалить</button>
+							<button class="ection__button btn_bar" id="remove-button-completed">Удалить
+								выполненные</button>
+						</div>
 					</div>
 				</div>
-				<div id="paginations-page" class="page__paginations">
-					<div id="list_ToDo" class="page__paginations-todo" data-status="active-on"> Список задач</div>
-				</div>
+			</div>
+			<div id="paginations-page" class="page__paginations _container">
+				<div id="list_ToDo" class="page__paginations-todo" data-status="active-on">Список задач</div>
 				<div class="page__paginations-body">
 					<div class="page__paginations-items">
 						<button class="page__paginations-button round-btn">1</button>
