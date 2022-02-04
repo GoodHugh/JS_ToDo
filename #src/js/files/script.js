@@ -43,6 +43,7 @@ document.addEventListener('input', ((elem) => {
 )
 
 function innerDiv() {
+    
     let count = 0;
     return function () {
         let taskToDO = document.getElementById('ToDo_value').value;
@@ -67,7 +68,6 @@ function innerDiv() {
             textareaEvent.value = '';
             countToDo();
             checkAllToDo();
-            AddLast_List_ToDo();
         }
     }
 }
@@ -290,19 +290,30 @@ function ToDoActiveList() {
 }
 
 //пагинация------------------------------------------------------------------
-const height_page__paginations = document.getElementById('paginations-page').clientHeight;
+
 function AddLast_List_ToDo() {
-    
     const ToDoList = document.querySelectorAll('.List');
-    let summItemsList = 0;
-    ToDoList.forEach((elem) => {
-        summItemsList = summItemsList + elem.offsetHeight;
-    })
-    if (height_page__paginations < summItemsList) {
-        let newPage = document.createElement('div');
-        newPage.setAttribute('class', 'page__paginations-todo');
-        newPage.setAttribute('data-status', 'active-on');
-        document.getElementById('list_ToDo').removeAttribute('data-status', 'active-on');
-        document.getElementById('paginations-page').append(newPage);
+    let count = 0;
+    console.log(count);
+    return function () {
+        if ((ToDoList.length % 12) < count) {
+            console.log("Создаем");
+            count++;
+        }
+        // if ((ToDoList.length % 12) > count && count > 1) {
+        //     console.log("Удаляем");
+        //     count--;
+        // }
     }
 }
+
+
+
+
+// if (ToDoList.length % 12) {
+//     count_newPage++;
+//     let newPage = document.createElement('div');
+//     newPage.setAttribute('class', 'page__paginations-todo');
+//     newPage.setAttribute('data-status', 'active-on');
+//     document.getElementById('paginations-page').append(newPage);
+// }
